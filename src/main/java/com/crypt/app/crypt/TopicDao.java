@@ -8,5 +8,5 @@ import java.io.IOException;
 public interface TopicDao {
     public void saveTopic(Topic topic) throws IOException;
 
-    public Topic getTopic(String topicName);
+    public Topic getTopic(String topicName) throws IOException;
 }

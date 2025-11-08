@@ -1,2 +1,4 @@
-package com.crypt.app.crypt.impl;public class MessageS3Impl {
+package com.crypt.app.crypt.impl;
+
+public class MessageS3Impl {
 }

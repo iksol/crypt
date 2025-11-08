@@ -29,21 +29,13 @@ public class TopicImpl implements TopicService {
         try {
             topicExists = getTopic(topic.getTopicName());
             if(topicExists != null) {
+                topicDao.saveTopic(topic);
                 response = new TopicResponse();
                 response.setTopic(topic);
-                response.setResponse("Topic Add Failed");
+                response.setResponse("Topic Updated");
                 response.setAction("ADD");
-                response.setStatus(HttpStatus.CONFLICT);
-            }
-        } catch (IOException e) {
-            response = new TopicResponse();
-            response.setTopic(topic);
-            response.setResponse("Topic Add Failed");
-            response.setAction("ADD");
-            response.setStatus(HttpStatus.BAD_REQUEST);
-        }
-        try {
-            if(Objects.isNull(topicExists)) {
+                response.setStatus(HttpStatus.OK);
+            } else {
                 topicDao.saveTopic(topic);
                 response = new TopicResponse();
                 response.setTopic(topic);

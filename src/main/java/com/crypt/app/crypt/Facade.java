@@ -1,12 +1,17 @@
 package com.crypt.app.crypt;
 
+import com.crypt.app.crypt.request.MessageRequest;
+import com.crypt.app.crypt.request.MessageResponse;
+import com.crypt.app.crypt.request.MsgDispRequest;
 import com.crypt.app.crypt.request.TopicRequest;
+import com.crypt.app.crypt.response.MsgDispResponse;
 import com.crypt.app.crypt.response.TopicResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("api")
 public class Facade {
@@ -14,6 +19,9 @@ public class Facade {
 
     @Autowired
     private TopicService topicService;
+
+    @Autowired
+    private MsgService msgService;
 
     @GetMapping("/hello")
     public String hello() {
@@ -32,4 +40,16 @@ public class Facade {
         logger.info("topic name {}", topic);
         return topicService.addTopic(topic.getTopic());
     }
+
+    @PostMapping("/addmsg")
+    public MessageResponse receiveMessage(@RequestBody MessageRequest msgRequest) {
+        return msgService.addMessage(msgRequest);
+    }
+
+    @PostMapping("/displayMsg")
+    public MsgDispResponse displayMsgs(@RequestBody MsgDispRequest request) {
+        return msgService.displayMessages(request);
+    }
+
+
 }

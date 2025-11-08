@@ -2,9 +2,9 @@
 <configuration>
     <include resource="org/springframework/boot/logging/logback/defaults.xml" />
 
-    <springProfile name="default | dev | staging | test">
+    <springProfile name="default | dev | staging | test | local | cloud">
         <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
-        <root level="INFO">
+        <root level="DEBUG">
             <appender-ref ref="CONSOLE"/>
         </root>
     </springProfile>
